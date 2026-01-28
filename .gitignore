@@ -1,0 +1,14 @@
+.cache/
+.venv/
+build/
+dist/
+logs/
+tmp/
+
+*.log
+*.bak
+
+.env
+.env.*
+
+.DS_Store

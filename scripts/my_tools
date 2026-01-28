@@ -1,0 +1,139 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+tool_exists() {
+  command -v "$1" >/dev/null 2>&1
+}
+
+get_term_cols() {
+  if command -v tput >/dev/null 2>&1; then
+    tput cols 2>/dev/null || printf "80"
+  else
+    printf "80"
+  fi
+}
+
+print_grid() {
+  local category="$1"
+  local col_width="$2"
+  shift 2
+  local -a tools=("$@")
+  local -a sorted_tools
+  local cols count
+
+  if [ ${#tools[@]} -eq 0 ]; then
+    return 0
+  fi
+
+  sorted_tools=()
+  while IFS= read -r line; do
+    [ -n "$line" ] && sorted_tools+=("$line")
+  done < <(printf '%s\n' "${tools[@]}" | LC_ALL=C sort)
+
+  cols=$(get_term_cols)
+  if [ $col_width -le 0 ]; then
+    col_width=1
+  fi
+  if [ $cols -le 0 ]; then
+    cols=80
+  fi
+  local num_cols=$((cols / col_width))
+  if [ $num_cols -lt 1 ]; then
+    num_cols=1
+  fi
+
+  printf "%b%s%b\n" "$CATEGORY_COLOR" "$category" "$COLOR_RESET"
+  count=0
+  for tool in "${sorted_tools[@]}"; do
+    printf "%b%-${col_width}s%b" "$TOOL_COLOR" "$tool" "$COLOR_RESET"
+    count=$((count + 1))
+    if [ $((count % num_cols)) -eq 0 ]; then
+      printf "\n"
+    fi
+  done
+  if [ $((count % num_cols)) -ne 0 ]; then
+    printf "\n"
+  fi
+  printf "\n"
+}
+
+entries=(
+  "AI & Dev Agents:codex droid gemini opencode pi qwen"
+  "Auth & Secrets:op"
+  "Browser Automation:agent-browser playwright-cli"
+  "CLIs & Runtimes:bun firebase-tools flutter node python"
+  "Cloud & Ops:tailscale"
+  "Databases:harlequin lazysql sqlite3"
+  "Docs & Preview:bat glow mmdc"
+  "Editors:helix nvim vim"
+  "Git & SCM:chezmoi delta difft gh git lazygit"
+  "Package Managers:brew bun npm npx uv"
+  "Search & Files:fd fzf rg yazi"
+  "Shells:zsh"
+  "Terminal Multiplexers:tmux zellij"
+)
+
+if [ -t 1 ] && [ -z "${NO_COLOR:-}" ]; then
+  if [ -n "${CYAN:-}" ] && [ -n "${GREEN:-}" ] && [ -n "${RESET:-}" ]; then
+    CATEGORY_COLOR="$CYAN"
+    TOOL_COLOR="$GREEN"
+    COLOR_RESET="$RESET"
+  elif command -v tput >/dev/null 2>&1; then
+    CATEGORY_COLOR=$'\033[38;5;51m'
+    TOOL_COLOR=$(tput setaf 2)
+    COLOR_RESET=$(tput sgr0)
+  else
+    CATEGORY_COLOR=""
+    TOOL_COLOR=""
+    COLOR_RESET=""
+  fi
+else
+  CATEGORY_COLOR=""
+  TOOL_COLOR=""
+  COLOR_RESET=""
+fi
+
+sorted_entries=()
+while IFS= read -r line; do
+  [ -n "$line" ] && sorted_entries+=("$line")
+done < <(printf '%s\n' "${entries[@]}" | LC_ALL=C sort)
+
+categories=()
+installed_lists=()
+max_tool_len=0
+for entry in "${sorted_entries[@]}"; do
+  IFS=':' read -r category tools_line <<< "$entry"
+  if [ -z "$category" ] || [ -z "$tools_line" ]; then
+    continue
+  fi
+
+  installed=()
+  for tool in $tools_line; do
+    if tool_exists "$tool"; then
+      installed+=("$tool")
+      if [ ${#tool} -gt $max_tool_len ]; then
+        max_tool_len=${#tool}
+      fi
+    fi
+  done
+
+  if [ ${#installed[@]} -gt 0 ]; then
+    categories+=("$category")
+    installed_lists+=("${installed[*]}")
+  fi
+done
+
+col_width=$((max_tool_len + 2))
+if [ $col_width -le 0 ]; then
+  col_width=1
+fi
+
+for i in "${!categories[@]}"; do
+  category="${categories[$i]}"
+  tools_line="${installed_lists[$i]}"
+  if [ -n "$tools_line" ]; then
+    read -r -a installed_tools <<< "$tools_line"
+    print_grid "$category" "$col_width" "${installed_tools[@]}"
+  fi
+done
