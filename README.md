@@ -14,8 +14,8 @@ Development location:
 
 Deployment target:
 
-- `./local/bin/my_tools`
-- `./local/bin/my_tools_welcome`
+- `~/.local/bin/my_tools`
+- `~/.local/bin/my_tools_welcome`
 
 ## Usage
 
@@ -36,4 +36,12 @@ Enable on shell launch:
 ```
 # ~/.zshrc or ~/.bashrc
 my_tools_welcome
+```
+
+## Deploy
+
+Install both scripts to `~/.local/bin`:
+
+```
+./scripts/deploy.sh
 ```
