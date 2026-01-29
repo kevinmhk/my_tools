@@ -4,5 +4,5 @@ if command -v my_tools >/dev/null 2>&1; then
   cyan=$'\033[38;5;51m'
   yellow=$'\033[38;5;226m'
   reset=$'\033[0m'
-  printf "%sYou can run %s\`my_tools\`%s to display the list of categorized tools available on this box.%s\n" "$cyan" "$yellow" "$cyan" "$reset"
+  printf "%sYou can run %s\`my_tools\`%s to display the full list of categorized tools available on this box.%s\n" "$cyan" "$yellow" "$cyan" "$reset"
 fi
