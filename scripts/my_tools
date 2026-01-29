@@ -59,7 +59,7 @@ print_grid() {
 }
 
 entries=(
-  "AI & Dev Agents:codex droid gemini opencode pi qwen"
+  "AI & Dev Agents:codex codexbar droid gemini opencode pi qwen"
   "Auth & Secrets:op"
   "Browser Automation:agent-browser playwright-cli"
   "CLIs & Runtimes:bun firebase-tools flutter node python"
