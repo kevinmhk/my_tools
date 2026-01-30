@@ -95,7 +95,7 @@ entries=(
   "Cloud & Ops:tailscale"
   "Databases:harlequin lazysql sqlite3"
   "Docs & Preview:bat glow mmdc"
-  "Editors:helix nvim vim"
+  "Editors:helix micro nvim vim"
   "Git & SCM:chezmoi delta difft gh git lazygit"
   "Package Managers:brew bun npm npx uv"
   "Search & Files:fd fzf rg yazi"
