@@ -93,7 +93,7 @@ entries=(
   "Browser Automation:agent-browser playwright-cli"
   "Programming & Runtimes:bun firebase-tools flutter jq node python python3 ruff ty"
   "Cloud & Ops:tailscale"
-  "Databases:harlequin lazysql sqlite3"
+  "Databases:duckdb harlequin lazysql sqlite3"
   "Docs & Preview:bat glow mmdc"
   "Editors:helix micro nvim vim"
   "Git & SCM:chezmoi delta difft gh git lazygit"
