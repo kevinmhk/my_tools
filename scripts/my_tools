@@ -91,7 +91,7 @@ entries=(
   "AI & Dev Agents:aider amp codex codexbar droid gemini opencode pi qwen"
   "Auth & Secrets:op"
   "Browser Automation:agent-browser playwright-cli"
-  "Programming & Runtimes:bun firebase-tools flutter jq node python python3 ruff ty"
+  "Programming & Runtimes:bun firebase-tools flutter jq node pytest python python3 ruff ty"
   "Cloud & Ops:tailscale"
   "Databases:duckdb harlequin lazysql sqlite3"
   "Docs & Preview:bat glow mmdc"
