@@ -93,6 +93,7 @@ entries=(
   "Browser Automation:agent-browser playwright-cli"
   "Programming & Runtimes:bun firebase-tools flutter jq node pytest python python3 ruff ty"
   "Cloud & Ops:tailscale"
+  "CSV Tools:csvclean csvcut csvformat csvgrep csvjoin csvjson csvlook csvpy csvsort csvsql csvstack csvstat in2csv qsv sql2csv xan"
   "Databases:duckdb harlequin lazysql sqlite3"
   "Docs & Preview:bat glow mmdc"
   "Editors:helix micro nvim vim"
@@ -100,6 +101,7 @@ entries=(
   "Package Managers:brew bun npm npx uv"
   "Search & Files:fd fzf rg yazi"
   "Shells:zsh"
+  "Text-to-Speech:espeak-ng"
   "Terminal Multiplexers:tmux zellij"
 )
 
