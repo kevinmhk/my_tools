@@ -29,8 +29,10 @@ get_term_cols() {
   if [ -n "${COLUMNS:-}" ] && [ "${COLUMNS:-0}" -gt 0 ] 2>/dev/null; then
     cols="$COLUMNS"
   elif command -v stty >/dev/null 2>&1; then
-    if read -r rows cols < <(stty size </dev/tty 2>/dev/null); then
-      :
+    if tty -s 2>/dev/null; then
+      if read -r rows cols < <(stty size 2>/dev/null); then
+        :
+      fi
     fi
   fi
 
