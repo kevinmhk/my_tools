@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tools Catalog: Audit"
+  short_description: "Audit catalog consistency"
+  default_prompt: "Use $tools-catalog-audit to review data/tools.yaml for duplicates and sorting issues, then summarize findings."

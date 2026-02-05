@@ -3,6 +3,8 @@
 ## Project Structure & Module Organization
 - `scripts/` contains the two primary shell scripts: `scripts/my_tools` and `scripts/my_tools_welcome`.
 - `scripts/deploy.sh` installs the scripts into `~/.local/bin`.
+- `data/tools.yaml` is the tools catalog consumed by `scripts/my_tools`.
+- `.agents/skills/` contains repo-local Codex skills for maintaining the catalog.
 - `README.md` documents usage and deployment.
 
 ## Build, Test, and Development Commands
@@ -15,6 +17,7 @@
 - Use `set -euo pipefail` for defensive scripting and explicit error handling.
 - Use lowercase with underscores for variables and functions (e.g., `get_term_cols`).
 - Keep scripts readable and linear; avoid clever one-liners.
+- Keep `data/tools.yaml` categories and tools alphabetized for readability.
 
 ## Testing Guidelines
 - No automated tests are configured.

@@ -2,6 +2,22 @@
 
 set -euo pipefail
 
+script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+catalog_file=""
+
+if [ -n "${MY_TOOLS_CATALOG:-}" ] && [ -f "${MY_TOOLS_CATALOG:-}" ]; then
+  catalog_file="$MY_TOOLS_CATALOG"
+elif [ -f "$script_dir/../data/tools.yaml" ]; then
+  catalog_file="$script_dir/../data/tools.yaml"
+elif [ -f "$HOME/.local/share/my_tools/tools.yaml" ]; then
+  catalog_file="$HOME/.local/share/my_tools/tools.yaml"
+fi
+
+if [ -z "$catalog_file" ]; then
+  echo "my_tools: tools catalog not found" >&2
+  exit 1
+fi
+
 tool_exists() {
   command -v "$1" >/dev/null 2>&1
 }
@@ -87,23 +103,60 @@ print_grid() {
   printf "\n"
 }
 
-entries=(
-  "AI & Dev Agents:aider amp codex codexbar droid gemini opencode pi qwen"
-  "Auth & Secrets:op"
-  "Browser Automation:agent-browser playwright-cli"
-  "Programming & Runtimes:bun firebase-tools flutter jq node pytest python python3 ruff ty"
-  "Cloud & Ops:tailscale"
-  "CSV Tools:csvclean csvcut csvformat csvgrep csvjoin csvjson csvlook csvpy csvsort csvsql csvstack csvstat in2csv qsv sql2csv xan"
-  "Databases:duckdb harlequin lazysql sqlite3"
-  "Docs & Preview:bat glow mmdc"
-  "Editors:helix micro nvim vim"
-  "Git & SCM:chezmoi delta difft gh git lazygit"
-  "Package Managers:brew bun npm npx uv"
-  "Search & Files:fd fzf rg yazi"
-  "Shells:zsh"
-  "Text-to-Speech:espeak-ng"
-  "Terminal Multiplexers:tmux zellij"
-)
+entries=()
+
+load_entries_from_yaml() {
+  local file="$1"
+  local current_category=""
+  local -a current_tools=()
+  local line trimmed tool
+
+  while IFS= read -r line || [ -n "$line" ]; do
+    line="${line%%#*}"
+    trimmed="${line#"${line%%[![:space:]]*}"}"
+    if [ -z "$trimmed" ]; then
+      continue
+    fi
+
+    case "$trimmed" in
+      "categories:")
+        continue
+        ;;
+      "- name:"*)
+        if [ -n "$current_category" ] && [ ${#current_tools[@]} -gt 0 ]; then
+          entries+=("$current_category:${current_tools[*]}")
+        fi
+        current_category="${trimmed#- name:}"
+        current_category="${current_category#" "}"
+        current_category="${current_category%\"}"
+        current_category="${current_category#\"}"
+        current_tools=()
+        ;;
+      "tools:"*)
+        continue
+        ;;
+      "- "*)
+        tool="${trimmed#- }"
+        tool="${tool%\"}"
+        tool="${tool#\"}"
+        if [ -n "$tool" ]; then
+          current_tools+=("$tool")
+        fi
+        ;;
+    esac
+  done < "$file"
+
+  if [ -n "$current_category" ] && [ ${#current_tools[@]} -gt 0 ]; then
+    entries+=("$current_category:${current_tools[*]}")
+  fi
+}
+
+load_entries_from_yaml "$catalog_file"
+
+if [ ${#entries[@]} -eq 0 ]; then
+  echo "my_tools: tools catalog is empty" >&2
+  exit 1
+fi
 
 if [ -t 1 ] && [ -z "${NO_COLOR:-}" ]; then
   if [ -n "${CYAN:-}" ] && [ -n "${GREEN:-}" ] && [ -n "${RESET:-}" ]; then

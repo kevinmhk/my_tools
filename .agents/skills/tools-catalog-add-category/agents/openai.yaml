@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tools Catalog: Add Category"
+  short_description: "Add categories to catalog and docs"
+  default_prompt: "Use $tools-catalog-add-category to add a new category to data/tools.yaml and update README.md and AGENTS.md."

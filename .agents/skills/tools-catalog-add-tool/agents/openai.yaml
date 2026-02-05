@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tools Catalog: Add Tool"
+  short_description: "Add tools to catalog and docs"
+  default_prompt: "Use $tools-catalog-add-tool to add new CLI tools to data/tools.yaml and update README.md and AGENTS.md."

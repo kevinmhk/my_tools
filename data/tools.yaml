@@ -1,0 +1,100 @@
+categories:
+  - name: "AI & Dev Agents"
+    tools:
+      - aider
+      - amp
+      - codex
+      - codexbar
+      - droid
+      - gemini
+      - opencode
+      - pi
+      - qwen
+  - name: "Auth & Secrets"
+    tools:
+      - op
+  - name: "Browser Automation"
+    tools:
+      - agent-browser
+      - playwright-cli
+  - name: "CSV Tools"
+    tools:
+      - csvclean
+      - csvcut
+      - csvformat
+      - csvgrep
+      - csvjoin
+      - csvjson
+      - csvlook
+      - csvpy
+      - csvsort
+      - csvsql
+      - csvstack
+      - csvstat
+      - in2csv
+      - qsv
+      - sql2csv
+      - xan
+  - name: "Cloud & Ops"
+    tools:
+      - tailscale
+  - name: "Databases"
+    tools:
+      - duckdb
+      - harlequin
+      - lazysql
+      - sqlite3
+  - name: "Docs & Preview"
+    tools:
+      - bat
+      - glow
+      - mmdc
+  - name: "Editors"
+    tools:
+      - helix
+      - micro
+      - nvim
+      - vim
+  - name: "Git & SCM"
+    tools:
+      - chezmoi
+      - delta
+      - difft
+      - gh
+      - git
+      - lazygit
+  - name: "Package Managers"
+    tools:
+      - brew
+      - bun
+      - npm
+      - npx
+      - uv
+  - name: "Programming & Runtimes"
+    tools:
+      - bun
+      - firebase-tools
+      - flutter
+      - jq
+      - node
+      - pytest
+      - python
+      - python3
+      - ruff
+      - ty
+  - name: "Search & Files"
+    tools:
+      - fd
+      - fzf
+      - rg
+      - yazi
+  - name: "Shells"
+    tools:
+      - zsh
+  - name: "Terminal Multiplexers"
+    tools:
+      - tmux
+      - zellij
+  - name: "Text-to-Speech"
+    tools:
+      - espeak-ng
