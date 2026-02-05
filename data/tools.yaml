@@ -63,6 +63,11 @@ categories:
       - gh
       - git
       - lazygit
+  - name: "Networking"
+    tools:
+      - ncat
+      - nmap
+      - nping
   - name: "Package Managers"
     tools:
       - brew
