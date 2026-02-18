@@ -77,6 +77,11 @@ categories:
       - uv
   - name: "Programming & Runtimes"
     tools:
+      - bats
+      - bats-assert
+      - bats-core
+      - bats-file
+      - bats-support
       - bun
       - firebase-tools
       - flutter
@@ -86,6 +91,9 @@ categories:
       - python
       - python3
       - ruff
+      - shellcheck
+      - shellspec
+      - shfmt
       - ty
   - name: "Search & Files"
     tools:
