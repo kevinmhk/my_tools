@@ -68,6 +68,9 @@ categories:
       - ncat
       - nmap
       - nping
+  - name: "Optimization"
+    tools:
+      - mo
   - name: "Package Managers"
     tools:
       - brew
