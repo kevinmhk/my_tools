@@ -66,6 +66,7 @@ categories:
   - name: "Networking"
     tools:
       - ncat
+      - ngrok
       - nmap
       - nping
   - name: "Optimization"
