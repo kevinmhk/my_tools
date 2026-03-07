@@ -66,6 +66,7 @@ categories:
       - lazygit
   - name: "Networking"
     tools:
+      - mtr
       - ncat
       - ngrok
       - nmap
