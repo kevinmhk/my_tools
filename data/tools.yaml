@@ -66,11 +66,17 @@ categories:
       - lazygit
   - name: "Networking"
     tools:
+      - curl
+      - dig
       - mtr
       - ncat
       - ngrok
       - nmap
       - nping
+      - nslookup
+      - ping
+      - tracepath
+      - traceroute
   - name: "Optimization"
     tools:
       - mo
