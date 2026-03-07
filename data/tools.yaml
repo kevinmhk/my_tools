@@ -14,6 +14,7 @@ categories:
   - name: "Auth & Secrets"
     tools:
       - op
+      - pass
   - name: "Browser Automation"
     tools:
       - agent-browser
@@ -115,6 +116,7 @@ categories:
       - yazi
   - name: "Shells"
     tools:
+      - bash
       - zsh
   - name: "Terminal Multiplexers"
     tools:
