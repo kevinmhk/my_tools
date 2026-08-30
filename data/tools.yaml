@@ -1,12 +1,15 @@
 categories:
   - name: "AI & Dev Agents"
     tools:
+      - agy
       - aider
       - amp
+      - claude
       - codex
       - codexbar
       - droid
       - gemini
+      - hermes
       - openclaw
       - opencode
       - pi

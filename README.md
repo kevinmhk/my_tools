@@ -21,7 +21,7 @@ Deployment target:
 
 ## Catalog
 
-The tools list is stored in `data/tools.yaml`. Keep categories and tools alphabetized for readability. If you need to point the script at a different catalog, set `MY_TOOLS_CATALOG` to the YAML path.
+The tools list is stored in `data/tools.yaml`. Keep categories and tools alphabetized for readability. The `AI & Dev Agents` category includes `agy`, `aider`, `amp`, `claude`, `codex`, `codexbar`, `droid`, `gemini`, `hermes`, `openclaw`, `opencode`, `pi`, and `qwen`. If you need to point the script at a different catalog, set `MY_TOOLS_CATALOG` to the YAML path.
 
 ## Skills
 
