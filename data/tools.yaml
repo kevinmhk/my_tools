@@ -123,6 +123,7 @@ categories:
       - zsh
   - name: "Terminal Multiplexers"
     tools:
+      - herdr
       - tmux
       - zellij
   - name: "Text-to-Speech"
