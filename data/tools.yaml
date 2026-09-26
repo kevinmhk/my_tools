@@ -18,6 +18,9 @@ categories:
     tools:
       - op
       - pass
+  - name: "Backup"
+    tools:
+      - restic
   - name: "Browser Automation"
     tools:
       - agent-browser
