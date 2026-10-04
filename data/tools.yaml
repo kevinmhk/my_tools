@@ -118,6 +118,7 @@ categories:
     tools:
       - fd
       - fzf
+      - qmd
       - rg
       - yazi
   - name: "Shells"
